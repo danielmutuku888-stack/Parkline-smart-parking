@@ -1,0 +1,61 @@
+{
+  "active_tickets": [
+    {
+      "plate_number": "KCT 389K",
+      "vehicle_type": "truck",
+      "slot_id": "T1",
+      "ticket_id": "PK-T1-20260914-2358",
+      "entry_time": "2026-09-14T05:26:29.117221"
+    },
+    {
+      "plate_number": "KGTY 9087",
+      "vehicle_type": "motorcycle",
+      "slot_id": "M1",
+      "ticket_id": "PK-M1-20260914-59A8",
+      "entry_time": "2026-09-14T05:27:20.298594"
+    },
+    {
+      "plate_number": "KDT 430M",
+      "vehicle_type": "car",
+      "slot_id": "C1",
+      "ticket_id": "PK-C1-20260914-3021",
+      "entry_time": "2026-09-14T05:27:36.262817"
+    },
+    {
+      "plate_number": "KGB 589R",
+      "vehicle_type": "truck",
+      "slot_id": "T2",
+      "ticket_id": "PK-T2-20260914-D9F1",
+      "entry_time": "2026-09-14T05:29:25.210319"
+    }
+  ],
+  "checkout_history": [
+    {
+      "plate_number": "KMNT 4567",
+      "slot_id": "M1",
+      "duration": "7:49:29.584911",
+      "hours": 8,
+      "amount": 400,
+      "vehicle_type": "motorcycle",
+      "checked_out_at": "2026-09-14T05:08"
+    },
+    {
+      "plate_number": "WORKS8765",
+      "slot_id": "C2",
+      "duration": "7:51:09.722689",
+      "hours": 8,
+      "amount": 800,
+      "vehicle_type": "car",
+      "checked_out_at": "2026-09-14T05:08"
+    },
+    {
+      "plate_number": "HISTORY1",
+      "slot_id": "C1",
+      "duration": "0:07:12.666730",
+      "hours": 1,
+      "amount": 100,
+      "vehicle_type": "car",
+      "checked_out_at": "2026-09-13T21:17"
+    }
+  ]
+}
