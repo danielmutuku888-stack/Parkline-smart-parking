@@ -95,6 +95,11 @@ def status_payload():
 
 
 class ParkingRequestHandler(BaseHTTPRequestHandler):
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self.send_cors_headers()
+        self.end_headers()
+
     def do_GET(self):
         path = urlparse(self.path).path
         if path == "/api/health":
@@ -157,9 +162,14 @@ class ParkingRequestHandler(BaseHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_cors_headers()
         self.end_headers()
         self.wfile.write(body)
+
+    def send_cors_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
 
     def serve_static(self, path):
         relative_path = "index.html" if path == "/" else path.lstrip("/")

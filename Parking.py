@@ -1,7 +1,9 @@
+import json
 import math
 import uuid
 from datetime import datetime
 from enum import Enum
+from pathlib import Path
 
 
 class VehicleType(Enum):
@@ -20,6 +22,8 @@ RATES = {
     VehicleType.CAR: 100,
     VehicleType.TRUCK: 120,
 }
+
+DATA_FILE = Path(__file__).with_name("parking_data.json")
 
 
 class ParkingSlot:
@@ -103,6 +107,50 @@ class ParkingLot:
         }
 
 
+def save_data(lot, checkout_history):
+    data = {
+        "active_tickets": [
+            {
+                "plate_number": ticket.plate_number,
+                "vehicle_type": ticket.vehicle_type.value,
+                "slot_id": ticket.slot.slot_id,
+                "ticket_id": ticket.ticket_id,
+                "entry_time": ticket.entry_time.isoformat(),
+            }
+            for ticket in lot.active_tickets.values()
+        ],
+        "checkout_history": checkout_history,
+    }
+    temporary_file = DATA_FILE.with_suffix(".json.tmp")
+    temporary_file.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    temporary_file.replace(DATA_FILE)
+
+
+def load_data(lot):
+    if not DATA_FILE.exists():
+        return []
+    try:
+        saved_data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+        for saved_ticket in saved_data.get("active_tickets", []):
+            slot = lot.slots.get(saved_ticket["slot_id"])
+            vehicle_type = VehicleType(saved_ticket["vehicle_type"])
+            if not slot or slot.status == SlotStatus.OCCUPIED:
+                continue
+            ticket = lot.vehicle_entry(saved_ticket["plate_number"], vehicle_type)
+            ticket.ticket_id = saved_ticket["ticket_id"]
+            ticket.entry_time = datetime.fromisoformat(saved_ticket["entry_time"])
+            if ticket.slot.slot_id != slot.slot_id:
+                lot.slots[ticket.slot.slot_id].status = SlotStatus.AVAILABLE
+                lot.slots[ticket.slot.slot_id].ticket = None
+                slot.status = SlotStatus.OCCUPIED
+                slot.ticket = ticket
+                ticket.slot = slot
+        return saved_data.get("checkout_history", [])
+    except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as error:
+        print(f"Could not load saved parking data: {error}")
+        return []
+
+
 def display_availability(lot):
     print("\nAvailable slots:")
     for vehicle_type in VehicleType:
@@ -133,6 +181,9 @@ if __name__ == "__main__":
     for i in range(1, 11):
         lot.add_slot(f"T{i}", VehicleType.TRUCK)
 
+    checkout_history = load_data(lot)
+    save_data(lot, checkout_history)
+
     print("Smart Parking System")
     while True:
         print("\n1. Vehicle entry")
@@ -146,6 +197,7 @@ if __name__ == "__main__":
             vehicle_type = read_vehicle_type()
             try:
                 ticket = lot.vehicle_entry(plate_number, vehicle_type)
+                save_data(lot, checkout_history)
                 print(f"Plate number recorded as: {plate_number}")
                 print(f"Vehicle parked in slot {ticket.slot.slot_id}.")
                 print(f"Ticket ID: {ticket.ticket_id}")
@@ -155,6 +207,8 @@ if __name__ == "__main__":
             plate_number = input("Vehicle plate number: ").strip().upper()
             try:
                 receipt = lot.vehicle_exit(plate_number)
+                checkout_history.insert(0, receipt)
+                save_data(lot, checkout_history)
                 print(f"Vehicle checked out from slot {receipt['slot_id']}.")
                 print(f"Parking time: {receipt['hours']} hour(s)")
                 print(f"Amount due: {receipt['amount']:.2f}")
