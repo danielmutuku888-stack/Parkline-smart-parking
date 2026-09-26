@@ -1,6 +1,7 @@
 const state = { mode: "entry", quote: null, ratesInitialized: false };
 const $ = (selector) => document.querySelector(selector);
 const currency = new Intl.NumberFormat("en-KE", { style: "currency", currency: "KES", maximumFractionDigits: 2 });
+let checkoutHistory = [];
 
 async function request(path, options = {}) {
   const response = await fetch(path, {
@@ -40,6 +41,7 @@ function renderRates(tiers) {
 }
 
 function render(data) {
+  checkoutHistory = data.checkout_history;
   const capacity = Object.values(data.availability);
   const total = capacity.reduce((sum, item) => sum + item.total, 0);
   const available = capacity.reduce((sum, item) => sum + item.available, 0);
@@ -69,6 +71,33 @@ function render(data) {
   if (!state.ratesInitialized) renderRates(data.rate_tiers);
   $("#last-updated").textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 }
+
+function csvCell(value) {
+  return `"${String(value ?? "").replaceAll('"', '""')}"`;
+}
+
+$("#export-payments").addEventListener("click", () => {
+  const columns = ["Receipt ID", "Paid at", "Plate number", "Bay", "Vehicle type", "Duration minutes", "Payment method", "Payment reference", "Payment status", "Amount KES"];
+  const rows = checkoutHistory.map((receipt) => [
+    receipt.payment_id,
+    receipt.paid_at || receipt.checked_out_at,
+    receipt.plate_number,
+    receipt.slot_id,
+    receipt.vehicle_type,
+    receipt.duration_minutes,
+    receipt.payment_method,
+    receipt.payment_reference,
+    receipt.payment_status || "legacy",
+    Number(receipt.amount || 0).toFixed(2),
+  ]);
+  const csv = [columns, ...rows].map((row) => row.map(csvCell).join(",")).join("\r\n");
+  const url = URL.createObjectURL(new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `parkline-payments-${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+  URL.revokeObjectURL(url);
+});
 
 async function refreshStatus() {
   try {
