@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parkline Smart Parking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Parkline Smart Parking home"><span class="brand-mark">P</span><span>parkline smart parking</span></a>
+      <div class="topbar-tools">
+        <div class="security-assurance"><span class="security-mark" aria-hidden="true">&#10003;</span><span><strong>Security assured</strong><small>Your parking data stays protected</small></span></div>
+        <div class="live-status"><span class="pulse"></span><span id="connection-state">Connecting</span> <span id="clock">--:--</span></div>
+      </div>
+    </header>
+
+    <section class="intro">
+      <div>
+        <p class="eyebrow">Operations dashboard / Gate A</p>
+        <h1>Keep every space<br><em>moving and secure.</em></h1>
+        <p class="subhead">A clear view of your lot, from the first entry to the final receipt.</p>
+      </div>
+      <div class="date-block"><span id="today">--</span><strong>LOT 01</strong></div>
+    </section>
+
+    <section class="metric-grid" aria-label="Parking capacity">
+      <article class="metric-card metric-main"><div class="metric-heading"><span>Live occupancy</span><span class="icon">↗</span></div><div class="occupancy"><strong id="occupied-count">0</strong><span>/ 100<br><small>vehicles inside</small></span></div><div class="meter"><span id="occupancy-meter"></span></div><p><b id="open-count">100</b> spaces remain open</p></article>
+      <article class="metric-card"><div class="metric-heading"><span>Cars</span><span class="dot car"></span></div><div class="big-number" id="car-available">60</div><p>spaces available</p><div class="mini-meter"><span id="car-meter"></span></div></article>
+      <article class="metric-card"><div class="metric-heading"><span>Motorcycles</span><span class="dot moto"></span></div><div class="big-number" id="motorcycle-available">30</div><p>spaces available</p><div class="mini-meter"><span id="motorcycle-meter"></span></div></article>
+      <article class="metric-card"><div class="metric-heading"><span>Trucks</span><span class="dot truck"></span></div><div class="big-number" id="truck-available">10</div><p>spaces available</p><div class="mini-meter"><span id="truck-meter"></span></div></article>
+    </section>
+
+    <section class="workspace">
+      <div class="panel actions-panel">
+        <div class="panel-title"><div><p class="eyebrow">Gate activity</p><h2>Vehicle movement</h2></div><span class="tag">Ready</span></div>
+        <div class="tabs" role="tablist"><button class="tab active" data-mode="entry">Vehicle entry</button><button class="tab" data-mode="exit">Vehicle checkout</button></div>
+        <form id="parking-form">
+          <label for="plate-number">Plate number</label>
+          <input id="plate-number" name="plate_number" type="text" placeholder="e.g. ABC 1234" maxlength="12" autocomplete="off" required>
+          <label for="vehicle-type" id="vehicle-type-label">Vehicle type</label>
+          <select id="vehicle-type" name="vehicle_type"><option value="car">Car</option><option value="motorcycle">Motorcycle</option><option value="truck">Truck</option></select>
+          <div id="checkout-details" hidden>
+            <div class="fee-quote" aria-live="polite"><span>Parking fee</span><strong id="quoted-fee">KES 0</strong><small id="quote-summary"></small></div>
+            <label for="payment-method">Payment method</label>
+            <select id="payment-method" name="payment_method"><option value="m-pesa">M-Pesa</option><option value="card">Card</option><option value="cash">Cash</option></select>
+            <div id="payment-reference-wrap"><label for="payment-reference">Transaction reference</label><input id="payment-reference" name="payment_reference" type="text" maxlength="80" autocomplete="off" placeholder="Confirmed M-Pesa or card reference"></div>
+            <label class="confirm-payment"><input id="payment-confirmed" type="checkbox"> Payment received and confirmed</label>
+          </div>
+          <button class="primary-button" type="submit"><span id="submit-label">Assign a space</span><span>→</span></button>
+        </form>
+        <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="panel tickets-panel">
+        <div class="panel-title"><div><p class="eyebrow">Live register</p><h2>Vehicles inside</h2></div><span class="count-badge" id="ticket-count">0</span></div>
+        <div class="ticket-list" id="ticket-list"><div class="empty-state">No vehicles are currently parked.</div></div>
+      </div>
+    </section>
+    <section class="panel checkout-panel">
+      <div class="panel-title"><div><p class="eyebrow">Completed visits</p><h2>Checkout history</h2></div><span class="tag">Receipts</span></div>
+      <div class="report-strip" aria-label="Payment reconciliation summary">
+        <div><small>Collected today</small><strong id="today-revenue">KES 0</strong></div>
+        <div><small>M-Pesa</small><strong id="mpesa-total">KES 0</strong></div>
+        <div><small>Card</small><strong id="card-total">KES 0</strong></div>
+        <div><small>Cash</small><strong id="cash-total">KES 0</strong></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Receipt</th><th>Plate / bay</th><th>Duration</th><th>Method / reference</th><th>Amount</th><th>Paid at</th></tr></thead>
+          <tbody id="checkout-history"><tr><td colspan="6" class="empty-table">No completed checkouts yet.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <details class="panel rate-panel">
+      <summary><span><span class="eyebrow">Administration</span><strong>Parking rates</strong></span><span class="tag">Edit rates</span></summary>
+      <form id="rate-form" class="rate-grid">
+        <label>Up to 30 min <span>KES</span><input type="number" name="rate-0" min="0" step="0.01" required></label>
+        <label>31-120 min <span>KES</span><input type="number" name="rate-1" min="0" step="0.01" required></label>
+        <label>121-240 min <span>KES</span><input type="number" name="rate-2" min="0" step="0.01" required></label>
+        <label>241-360 min <span>KES</span><input type="number" name="rate-3" min="0" step="0.01" required></label>
+        <label>Over 360 min <span>KES</span><input type="number" name="rate-4" min="0" step="0.01" required></label>
+        <button class="secondary-button" type="submit">Save rates</button>
+      </form>
+      <p id="rate-feedback" class="feedback" role="status" aria-live="polite"></p>
+    </details>
+    <footer><span>Parkline / Smart Parking System</span><span>System operational · <span id="last-updated">just now</span></span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
