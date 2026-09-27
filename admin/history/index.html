@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout History · Parkline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <div id="shared-header"></div><div id="shared-nav"></div>
+    <div class="page-content">
+    <section class="intro page-intro"><div><p class="eyebrow">Administration / Receipts</p><h1>Checkout<br><em>history.</em></h1><p class="subhead">Completed visits and payment reconciliation.</p></div></section>
+    <nav class="admin-tabs" aria-label="Admin pages"><a class="active" href="/admin/history" aria-current="page">Checkout History</a><a href="/admin/rates">Parking Rates</a></nav>
+    <section class="panel checkout-panel">
+      <div class="panel-title"><div><p class="eyebrow">Completed visits</p><h2>Receipt ledger</h2></div><div class="panel-actions"><button id="export-payments" class="secondary-button" type="button">Download ledger CSV</button><button id="export-selected-payments" class="secondary-button" type="button" disabled>Download selected</button><button id="delete-selected-history" class="secondary-button" type="button" disabled>Delete selected</button><span id="selected-history-count" class="tag">0 selected</span></div></div>
+      <p id="history-feedback" class="feedback" role="status" aria-live="polite"></p>
+      <div class="report-strip" aria-label="Payment reconciliation summary">
+        <div><small>Collected today</small><strong id="today-revenue">KES 0</strong></div>
+        <div><small>M-Pesa</small><strong id="mpesa-total">KES 0</strong></div>
+        <div><small>Card</small><strong id="card-total">KES 0</strong></div>
+        <div><small>Cash</small><strong id="cash-total">KES 0</strong></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th><input id="select-all-history" type="checkbox" aria-label="Select all checkout records"></th><th>Receipt</th><th>Plate / bay</th><th>Duration</th><th>Method / reference</th><th>Amount</th><th>Paid at</th></tr></thead>
+        <tbody id="checkout-history"><tr><td colspan="6" class="empty-table loading-state">Loading checkout history...</td></tr></tbody>
+      </table></div>
+    </section>
+    <div id="shared-footer"></div>
+    </div>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

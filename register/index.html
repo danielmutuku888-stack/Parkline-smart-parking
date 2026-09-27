@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Register · Parkline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <div id="shared-header"></div><div id="shared-nav"></div>
+    <div class="page-content">
+    <section class="intro page-intro"><div><p class="eyebrow">Parking overview / Live register</p><h1>Every bay,<br><em>accounted for.</em></h1><p class="subhead">Current occupancy across all parking spaces.</p></div></section>
+    <div id="slot-grid-heading" class="slot-grid-heading" hidden><h2>Slot availability</h2><p><strong id="slot-grid-total-count">0</strong> slots</p></div>
+    <section class="panel register-panel">
+      <div class="panel-title"><div><p class="eyebrow">Lot 01 / Gate A</p><h2>Parking bays <span class="count-badge" id="register-count">100</span></h2></div>
+        <label class="filter-control" for="register-filter">Vehicle type
+          <select id="register-filter"><option value="">All vehicles</option><option value="car">Cars</option><option value="motorcycle">Motorcycles</option><option value="truck">Trucks</option></select>
+        </label>
+      </div>
+      <div class="register-summary"><span><i class="slot-status available"> </i> Free <strong id="register-available">100</strong></span><span><i class="slot-status occupied"> </i> Occupied <strong id="register-occupied">0</strong></span></div>
+      <div class="register-view-tools">
+        <span class="eyebrow">View</span>
+        <div class="segmented-control" role="group" aria-label="Register display mode">
+          <button type="button" data-register-view="table" aria-pressed="true">Table</button>
+          <button type="button" data-register-view="grid" aria-pressed="false">Grid</button>
+        </div>
+      </div>
+      <div id="slot-grid-view" class="slot-grid-container" hidden>
+        <div id="slot-grid" class="slot-grid"><p class="loading-state">Loading parking bays...</p></div>
+      </div>
+      <div id="register-table-view" class="table-wrap">
+        <table class="register-table">
+          <thead><tr><th>Bay ID</th><th>Vehicle type</th><th>Status</th><th>Plate number</th><th>Entry time</th></tr></thead>
+          <tbody id="slot-register"><tr><td colspan="5" class="empty-table loading-state">Loading parking bays...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <div id="shared-footer"></div>
+    </div>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

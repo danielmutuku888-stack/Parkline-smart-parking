@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Movement · Parkline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <div id="shared-header"></div><div id="shared-nav"></div>
+    <div class="page-content">
+    <section class="intro page-intro"><div><p class="eyebrow">Gate activity / Gate A</p><h1>Vehicle<br><em>movement.</em></h1><p class="subhead">Record arrivals and authorize paid exits.</p></div></section>
+    <section class="workspace movement-workspace">
+      <div class="panel actions-panel">
+        <div class="panel-title"><div><p class="eyebrow">Gate activity</p><h2>Vehicle movement</h2></div><span class="tag">Ready</span></div>
+        <div class="tabs" role="tablist"><button class="tab active" type="button" data-mode="entry">Vehicle entry</button><button class="tab" type="button" data-mode="exit">Vehicle checkout</button></div>
+        <div id="checkout-picker" class="checkout-picker" hidden>
+          <label for="checkout-search">Currently parked vehicles</label>
+          <input id="checkout-search" type="search" placeholder="Search plate, bay, or type" autocomplete="off">
+          <div id="checkout-picker-list" class="checkout-picker-list"><p class="loading-state">Loading parked vehicles...</p></div>
+        </div>
+        <form id="parking-form">
+          <label for="plate-number">Plate number or bay ID</label>
+          <input id="plate-number" name="plate_number" type="text" placeholder="e.g. ABC 1234 or C1" minlength="2" maxlength="12" autocomplete="off" required>
+          <label for="vehicle-type" id="vehicle-type-label">Vehicle type</label>
+          <select id="vehicle-type" name="vehicle_type"><option value="car">Car</option><option value="motorcycle">Motorcycle</option><option value="truck">Truck</option></select>
+          <p id="next-bay" class="next-bay" aria-live="polite">Loading next bay...</p>
+          <p id="capacity-notice" class="capacity-notice" role="status" aria-live="polite" hidden></p>
+          <div id="checkout-details" hidden>
+            <div class="fee-quote" aria-live="polite"><span>Parking fee</span><strong id="quoted-fee">KES 0</strong><small id="quote-summary"></small></div>
+            <label for="payment-method">Payment method</label>
+            <select id="payment-method" name="payment_method"><option value="m-pesa">M-Pesa</option><option value="card">Card</option><option value="cash">Cash</option></select>
+            <div id="payment-reference-wrap"><label for="payment-reference">Transaction reference</label><input id="payment-reference" name="payment_reference" type="text" maxlength="80" autocomplete="off" placeholder="Confirmed M-Pesa or card reference"></div>
+            <label class="confirm-payment"><input id="payment-confirmed" type="checkbox"> Payment received and confirmed</label>
+          </div>
+          <button class="primary-button" type="submit" disabled><span id="submit-label">Assign a space</span><span>→</span></button>
+        </form>
+        <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+      </div>
+      <aside class="panel movement-capacity">
+        <div class="panel-title"><div><p class="eyebrow">Live capacity</p><h2>Spaces available</h2></div><a class="text-link" href="/register">Open register →</a></div>
+        <div class="capacity-row"><span><i class="dot car"></i> Cars</span><strong><span id="car-available">60</span> / <span id="car-total">60</span></strong></div>
+        <div class="mini-meter"><span id="car-meter"></span></div>
+        <div class="capacity-row"><span><i class="dot moto"></i> Motorcycles</span><strong><span id="motorcycle-available">30</span> / <span id="motorcycle-total">30</span></strong></div>
+        <div class="mini-meter"><span id="motorcycle-meter"></span></div>
+        <div class="capacity-row"><span><i class="dot truck"></i> Trucks</span><strong><span id="truck-available">10</span> / <span id="truck-total">10</span></strong></div>
+        <div class="mini-meter"><span id="truck-meter"></span></div>
+      </aside>
+    </section>
+    <div id="shared-footer"></div>
+    </div>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

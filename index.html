@@ -11,60 +11,33 @@
 </head>
 <body>
   <main class="shell">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Parkline Smart Parking home"><span class="brand-mark">P</span><span>parkline smart parking</span></a>
-      <div class="topbar-tools">
-        <div class="security-assurance"><span class="security-mark" aria-hidden="true">&#10003;</span><span><strong>Security assured</strong><small>Your parking data stays protected</small></span></div>
-        <div class="live-status"><span class="pulse"></span> Live operations <span id="clock">--:--</span></div>
-      </div>
-    </header>
+    <div id="shared-header"></div>
+    <div id="shared-nav"></div>
 
+    <div class="page-content">
     <section class="intro">
       <div>
-        <p class="eyebrow">Operations dashboard / Gate A</p>
+        <p class="eyebrow">Operations dashboard / Lot 01</p>
         <h1>Keep every space<br><em>moving and secure.</em></h1>
-        <p class="subhead">A clear view of your lot, from the first entry to the final receipt.</p>
+        <p class="subhead">A live view of parking capacity across every vehicle type.</p>
       </div>
       <div class="date-block"><span id="today">--</span><strong>LOT 01</strong></div>
     </section>
 
     <section class="metric-grid" aria-label="Parking capacity">
-      <article class="metric-card metric-main"><div class="metric-heading"><span>Total occupancy</span><span class="icon">↗</span></div><div class="occupancy"><strong id="occupied-count">0</strong><span>/ 100<br><small>vehicles inside</small></span></div><div class="meter"><span id="occupancy-meter"></span></div><p><b id="open-count">100</b> spaces remain open</p></article>
-      <article class="metric-card"><div class="metric-heading"><span>Cars</span><span class="dot car"></span></div><div class="big-number" id="car-available">60</div><p>spaces available</p><div class="mini-meter"><span id="car-meter"></span></div></article>
-      <article class="metric-card"><div class="metric-heading"><span>Motorcycles</span><span class="dot moto"></span></div><div class="big-number" id="motorcycle-available">30</div><p>spaces available</p><div class="mini-meter"><span id="motorcycle-meter"></span></div></article>
-      <article class="metric-card"><div class="metric-heading"><span>Trucks</span><span class="dot truck"></span></div><div class="big-number" id="truck-available">10</div><p>spaces available</p><div class="mini-meter"><span id="truck-meter"></span></div></article>
+      <article class="metric-card metric-main"><div class="metric-heading"><span>Live occupancy</span><span class="icon">↗</span></div><div class="occupancy"><strong id="occupied-count">0</strong><span>/ 100<br><small>vehicles inside</small></span></div><div class="meter"><span id="occupancy-meter"></span></div><p><b id="open-count">100</b> spaces remain open</p></article>
+      <a class="metric-card vehicle-card" href="/register?type=car&amp;view=grid"><div class="metric-heading"><span>Cars</span><span class="dot car"></span></div><div class="big-number"><span id="car-available">60</span><small> / <span id="car-total">60</span></small></div><p>spaces available</p><div class="mini-meter"><span id="car-meter"></span></div></a>
+      <a class="metric-card vehicle-card" href="/register?type=motorcycle&amp;view=grid"><div class="metric-heading"><span>Motorcycles</span><span class="dot moto"></span></div><div class="big-number"><span id="motorcycle-available">30</span><small> / <span id="motorcycle-total">30</span></small></div><p>spaces available</p><div class="mini-meter"><span id="motorcycle-meter"></span></div></a>
+      <a class="metric-card vehicle-card" href="/register?type=truck&amp;view=grid"><div class="metric-heading"><span>Trucks</span><span class="dot truck"></span></div><div class="big-number"><span id="truck-available">10</span><small> / <span id="truck-total">10</span></small></div><p>spaces available</p><div class="mini-meter"><span id="truck-meter"></span></div></a>
     </section>
 
-    <section class="workspace">
-      <div class="panel actions-panel">
-        <div class="panel-title"><div><p class="eyebrow">Gate activity</p><h2>Vehicle movement</h2></div><span class="tag">Ready</span></div>
-        <div class="tabs" role="tablist"><button class="tab active" data-mode="entry">Vehicle entry</button><button class="tab" data-mode="exit">Vehicle checkout</button></div>
-        <form id="parking-form">
-          <label for="plate-number">Plate number</label>
-          <input id="plate-number" name="plate_number" type="text" placeholder="e.g. ABC 1234" maxlength="12" autocomplete="off" required>
-          <label for="vehicle-type" id="vehicle-type-label">Vehicle type</label>
-          <select id="vehicle-type" name="vehicle_type"><option value="car">Car</option><option value="motorcycle">Motorcycle</option><option value="truck">Truck</option></select>
-          <button class="primary-button" type="submit"><span id="submit-label">Assign a space</span><span>→</span></button>
-        </form>
-        <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
-      </div>
-
-      <div class="panel tickets-panel">
-        <div class="panel-title"><div><p class="eyebrow">Live register</p><h2>Vehicles inside</h2></div><span class="count-badge" id="ticket-count">0</span></div>
-        <div class="ticket-list" id="ticket-list"><div class="empty-state">No vehicles are currently parked.</div></div>
-      </div>
+    <section class="workspace home-actions">
+      <a class="panel home-link" href="/movement"><p class="eyebrow">Gate activity</p><h2>Vehicle movement</h2><span>Check a vehicle in or complete checkout →</span></a>
+      <a class="panel home-link" href="/register"><p class="eyebrow">Live register</p><h2>Parking bays</h2><span>View all 100 spaces and their current status →</span></a>
     </section>
-    <section class="panel checkout-panel">
-      <div class="panel-title"><div><p class="eyebrow">Completed visits</p><h2>Checkout history</h2></div><span class="tag">Receipts</span></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Plate number</th><th>Vehicle type</th><th>Time parked</th><th>Amount paid</th><th>Checked out</th></tr></thead>
-          <tbody id="checkout-history"><tr><td colspan="5" class="empty-table">No completed checkouts yet.</td></tr></tbody>
-        </table>
-      </div>
-    </section>
-    <footer><span>Parkline / Smart Parking System</span><span>System operational · <span id="last-updated">just now</span></span></footer>
+    <div id="shared-footer"></div>
+    </div>
   </main>
-  <script src="app.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>

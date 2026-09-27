@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Parkline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <div id="shared-header"></div><div id="shared-nav"></div>
+    <div class="page-content">
+    <section class="intro page-intro"><div><p class="eyebrow">Administration / Lot 01</p><h1>Admin<br><em>workspace.</em></h1><p class="subhead">Manage checkout records and parking rates.</p></div></section>
+    <nav class="admin-tabs" aria-label="Admin pages"><a href="/admin/history">Checkout History</a><a href="/admin/rates">Parking Rates</a></nav>
+    <section class="workspace admin-links">
+      <a class="panel home-link" href="/admin/history"><p class="eyebrow">Receipts</p><h2>Checkout History</h2><span>Review completed visits, payment totals, and export the ledger →</span></a>
+      <a class="panel home-link" href="/admin/rates"><p class="eyebrow">Configuration</p><h2>Parking Rates</h2><span>View and update the active rate tiers →</span></a>
+    </section>
+    <div id="shared-footer"></div>
+    </div>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

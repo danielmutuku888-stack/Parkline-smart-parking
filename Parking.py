@@ -17,13 +17,23 @@ class SlotStatus(Enum):
     OCCUPIED = "occupied"
 
 
-RATES = {
-    VehicleType.MOTORCYCLE: 50,
-    VehicleType.CAR: 100,
-    VehicleType.TRUCK: 120,
-}
+PARKING_TIERS = [
+    (30, 0.0),
+    (120, 50.0),
+    (240, 100.0),
+    (360, 300.0),
+    (None, 500.0),
+]
 
 DATA_FILE = Path(__file__).with_name("parking_data.json")
+
+
+def calculate_parking_fee(duration_minutes):
+    minutes = max(0, int(duration_minutes))
+    for max_minutes, fee in PARKING_TIERS:
+        if max_minutes is None or minutes <= max_minutes:
+            return float(fee)
+    return float(PARKING_TIERS[-1][1])
 
 
 class ParkingSlot:
@@ -90,8 +100,8 @@ class ParkingLot:
 
         ticket.exit_time = datetime.now()
         duration = ticket.exit_time - ticket.entry_time
-        hours = math.ceil(duration.total_seconds() / 3600) or 1
-        ticket.amount = round(hours * RATES[ticket.vehicle_type], 2)
+        duration_minutes = max(1, math.ceil(duration.total_seconds() / 60))
+        ticket.amount = round(calculate_parking_fee(duration_minutes), 2)
 
         slot = ticket.slot
         slot.status = SlotStatus.AVAILABLE  # increments availability
@@ -102,7 +112,8 @@ class ParkingLot:
             "plate_number": plate_number,
             "slot_id": slot.slot_id,
             "duration": str(duration),
-            "hours": hours,
+            "duration_minutes": duration_minutes,
+            "hours": math.ceil(duration_minutes / 60),
             "amount": ticket.amount,
         }
 

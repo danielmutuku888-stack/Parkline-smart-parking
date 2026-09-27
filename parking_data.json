@@ -2,67 +2,186 @@
   "active_tickets": [],
   "checkout_history": [
     {
-      "plate_number": "KGTY 9087",
-      "slot_id": "M1",
-      "duration": "1 day, 23:35:19.214106",
-      "hours": 48,
-      "amount": 2400,
-      "vehicle_type": "motorcycle",
-      "checked_out_at": "2026-09-16T05:02"
-    },
-    {
-      "plate_number": "KGB 589R",
-      "slot_id": "T2",
-      "duration": "1 day, 23:32:59.530735",
-      "hours": 48,
-      "amount": 5760,
-      "vehicle_type": "truck",
-      "checked_out_at": "2026-09-16T05:02"
-    },
-    {
-      "plate_number": "KCT 389K",
-      "slot_id": "T1",
-      "duration": "1 day, 23:35:31.980240",
-      "hours": 48,
-      "amount": 5760,
-      "vehicle_type": "truck",
-      "checked_out_at": "2026-09-16T05:02"
-    },
-    {
-      "plate_number": "KDT 430M",
+      "plate_number": "KMN 789J",
       "slot_id": "C1",
-      "duration": "2:08:45.173026",
-      "hours": 3,
-      "amount": 300,
-      "vehicle_type": "car",
-      "checked_out_at": "2026-09-14T07:36"
-    },
-    {
-      "plate_number": "KMNT 4567",
-      "slot_id": "M1",
-      "duration": "7:49:29.584911",
-      "hours": 8,
-      "amount": 400,
-      "vehicle_type": "motorcycle",
-      "checked_out_at": "2026-09-14T05:08"
-    },
-    {
-      "plate_number": "WORKS8765",
-      "slot_id": "C2",
-      "duration": "7:51:09.722689",
-      "hours": 8,
-      "amount": 800,
-      "vehicle_type": "car",
-      "checked_out_at": "2026-09-14T05:08"
-    },
-    {
-      "plate_number": "HISTORY1",
-      "slot_id": "C1",
-      "duration": "0:07:12.666730",
+      "duration": "0:45:46.039202",
+      "duration_minutes": 46,
       "hours": 1,
-      "amount": 100,
+      "amount": 50.0,
       "vehicle_type": "car",
-      "checked_out_at": "2026-09-13T21:17"
+      "checked_out_at": "2026-09-27T07:51:24+03:00",
+      "paid_at": "2026-09-27T07:51:24+03:00",
+      "payment_method": "m-pesa",
+      "payment_reference": "3",
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 30.16
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927075124-00010"
+    },
+    {
+      "plate_number": "KLM 890K",
+      "slot_id": "M1",
+      "duration": "0:02:43.382874",
+      "duration_minutes": 3,
+      "hours": 1,
+      "amount": 30.16,
+      "vehicle_type": "motorcycle",
+      "checked_out_at": "2026-09-27T05:33:05+03:00",
+      "paid_at": "2026-09-27T05:33:05+03:00",
+      "payment_method": "card",
+      "payment_reference": "upg79qsrt",
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 30.16
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927053305-00009"
+    },
+    {
+      "plate_number": "KJN 674L",
+      "slot_id": "C1",
+      "duration": "0:00:39.278927",
+      "duration_minutes": 1,
+      "hours": 1,
+      "amount": 0.0,
+      "vehicle_type": "car",
+      "checked_out_at": "2026-09-27T05:29:27+03:00",
+      "paid_at": "2026-09-27T05:29:27+03:00",
+      "payment_method": "cash",
+      "payment_reference": null,
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 0.0
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927052927-00008"
     }
-  ]
+  ],
+  "rate_tiers": {
+    "car": [
+      {
+        "max_minutes": 30,
+        "amount": 30.16
+      },
+      {
+        "max_minutes": 120,
+        "amount": 50.0
+      },
+      {
+        "max_minutes": 240,
+        "amount": 100.0
+      },
+      {
+        "max_minutes": 360,
+        "amount": 300.0
+      },
+      {
+        "max_minutes": null,
+        "amount": 500.0
+      }
+    ],
+    "motorcycle": [
+      {
+        "max_minutes": 30,
+        "amount": 30.16
+      },
+      {
+        "max_minutes": 120,
+        "amount": 50.0
+      },
+      {
+        "max_minutes": 240,
+        "amount": 100.0
+      },
+      {
+        "max_minutes": 360,
+        "amount": 300.0
+      },
+      {
+        "max_minutes": null,
+        "amount": 500.0
+      }
+    ],
+    "truck": [
+      {
+        "max_minutes": 30,
+        "amount": 30.16
+      },
+      {
+        "max_minutes": 120,
+        "amount": 50.0
+      },
+      {
+        "max_minutes": 240,
+        "amount": 100.0
+      },
+      {
+        "max_minutes": 360,
+        "amount": 300.0
+      },
+      {
+        "max_minutes": null,
+        "amount": 500.0
+      }
+    ]
+  }
 }
