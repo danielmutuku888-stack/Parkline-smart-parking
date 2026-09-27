@@ -2,6 +2,234 @@
   "active_tickets": [],
   "checkout_history": [
     {
+      "plate_number": "KMNY 678U",
+      "slot_id": "M1",
+      "duration": "0:01:31.333392",
+      "duration_minutes": 2,
+      "hours": 1,
+      "amount": 30.16,
+      "vehicle_type": "motorcycle",
+      "checked_out_at": "2026-09-27T17:09:14+03:00",
+      "paid_at": "2026-09-27T17:09:14+03:00",
+      "payment_method": "cash",
+      "payment_reference": null,
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 30.16
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927170914-00009"
+    },
+    {
+      "plate_number": "TEST1111",
+      "slot_id": "C3",
+      "duration": "0:06:58.618077",
+      "duration_minutes": 7,
+      "hours": 1,
+      "amount": 30.16,
+      "vehicle_type": "car",
+      "checked_out_at": "2026-09-27T16:45:35+03:00",
+      "paid_at": "2026-09-27T16:45:35+03:00",
+      "payment_method": "m-pesa",
+      "payment_reference": "UQTRE45G78",
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 30.16
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927164535-00008"
+    },
+    {
+      "plate_number": "XYZ9999",
+      "slot_id": "C2",
+      "duration": "0:06:32.644068",
+      "duration_minutes": 7,
+      "hours": 1,
+      "amount": 30.16,
+      "vehicle_type": "car",
+      "checked_out_at": "2026-09-27T16:44:58+03:00",
+      "paid_at": "2026-09-27T16:44:58+03:00",
+      "payment_method": "cash",
+      "payment_reference": null,
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 30.16
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927164458-00007"
+    },
+    {
+      "plate_number": "ABC1234",
+      "slot_id": "C1",
+      "duration": "0:08:03.356831",
+      "duration_minutes": 9,
+      "hours": 1,
+      "amount": 30.16,
+      "vehicle_type": "car",
+      "checked_out_at": "2026-09-27T16:44:27+03:00",
+      "paid_at": "2026-09-27T16:44:27+03:00",
+      "payment_method": "cash",
+      "payment_reference": null,
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 30.16
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927164427-00006"
+    },
+    {
+      "plate_number": "VERIFY001",
+      "slot_id": "C4",
+      "duration": "0:00:00.582310",
+      "duration_minutes": 1,
+      "hours": 1,
+      "amount": 30.16,
+      "vehicle_type": "car",
+      "checked_out_at": "2026-09-27T16:42:51+03:00",
+      "paid_at": "2026-09-27T16:42:51+03:00",
+      "payment_method": "cash",
+      "payment_reference": null,
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 30.16
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927164251-00005"
+    },
+    {
+      "plate_number": "FLOW123",
+      "slot_id": "C4",
+      "duration": "0:00:03.012212",
+      "duration_minutes": 1,
+      "hours": 1,
+      "amount": 30.16,
+      "vehicle_type": "car",
+      "checked_out_at": "2026-09-27T16:39:39+03:00",
+      "paid_at": "2026-09-27T16:39:39+03:00",
+      "payment_method": "cash",
+      "payment_reference": null,
+      "payment_status": "confirmed",
+      "barrier_status": "release_authorized",
+      "rate_snapshot": [
+        {
+          "max_minutes": 30,
+          "amount": 30.16
+        },
+        {
+          "max_minutes": 120,
+          "amount": 50.0
+        },
+        {
+          "max_minutes": 240,
+          "amount": 100.0
+        },
+        {
+          "max_minutes": 360,
+          "amount": 300.0
+        },
+        {
+          "max_minutes": null,
+          "amount": 500.0
+        }
+      ],
+      "payment_id": "PAY-20260927163939-00004"
+    },
+    {
       "plate_number": "KMN 789J",
       "slot_id": "C1",
       "duration": "0:45:46.039202",

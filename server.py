@@ -177,6 +177,14 @@ def fee_for_minutes(minutes, vehicle_type):
     return tiers[-1]["amount"]
 
 
+def amounts_match(expected, actual):
+    if isinstance(expected, bool) or isinstance(actual, bool):
+        return False
+    if not isinstance(expected, (int, float)) or not isinstance(actual, (int, float)):
+        return False
+    return math.isclose(float(expected), float(actual), rel_tol=1e-9, abs_tol=1e-9)
+
+
 def quote_for(plate_number):
     ticket = lot.active_tickets.get(plate_number)
     if not ticket:
@@ -294,7 +302,7 @@ class ParkingRequestHandler(BaseHTTPRequestHandler):
                 with data_lock:
                     quote = quote_for(plate_number)
                     quoted_amount = payload.get("quoted_amount")
-                    if isinstance(quoted_amount, bool) or not isinstance(quoted_amount, (int, float)) or round(quoted_amount, 2) != quote["amount"]:
+                    if not amounts_match(quoted_amount, quote["amount"]):
                         raise ValueError("Fee has changed. Review the updated quote before recording payment.")
                     receipt = lot.vehicle_exit(plate_number)
                     now = datetime.now().astimezone().isoformat(timespec="seconds")
